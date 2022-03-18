@@ -1,0 +1,137 @@
+<p-toast></p-toast>
+<div class="signin-content">
+    <mat-card>
+
+
+
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="right">
+                  <div id="flex-container">
+
+                    <div>
+                 <button pButton pRipple id="new" label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                        (click)="openNew()"></button>
+                    </div>
+                    
+                    <div>
+                    <h5>Manage Program</h5>
+                    </div>
+                    <div>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+
+                    </div>
+                </ng-template>
+            </p-toolbar>
+
+            <div fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
+                <mat-spinner [diameter]="50" strokeWidth="5" *ngIf="visibility ">
+                </mat-spinner>
+            </div>
+            
+            <p-table #dt responsiveLayout="stack" [value]="programs" [rows]="5" [paginator]="true"
+                [globalFilterFields]="['programName','programDescription','programStatus']"
+                [(selection)]="selectedPrograms" [rowHover]="true" dataKey="id"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true">
+
+                <!--        
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-start">
+                
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template> -->
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="programName">Program Name <p-sortIcon field="programName"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="programDescription">Program Description <p-sortIcon field="description">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="programStatus">Program Status <p-sortIcon field="status"></p-sortIcon>
+                        </th>
+
+                        <th pSortableColumn="programStatus">Edit
+                        </th>
+
+
+                        <th pSortableColumn="programStatus">Delete
+                        </th>
+
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-program>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="program"></p-tableCheckbox>
+                        </td>
+                        <td>{{program.programName}}</td>
+                        <td>{{program.programDescription}}</td>
+                        <td>{{program.online}}</td>
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                                (click)="editProgram(program)"></button>
+                        </td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                (click)="deleteProgram(program)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{programs ? programs.length : 0 }} programs.
+                    </div>
+                </ng-template>
+
+            </p-table>
+        </div>
+    </mat-card>
+</div>
+
+<p-dialog [(visible)]="programDialogue" [style]="{width: '450px'}" header="Program Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="programName">Name</label>
+            <input type="text" pInputText id="programName" [(ngModel)]="program.programName" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !program.programName">Name is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="programDescription">Description</label>
+            <input type="text" id="programDescription" pInputText [(ngModel)]="program.programDescription" required
+                rows="3" cols="20" />
+        </div>
+        <div class="p-field">
+            <label for="online">Status</label>
+            <input type="text" id="online" pInputText [(ngModel)]="program.online" required rows="3" cols="20" />
+        </div>
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProgram()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
