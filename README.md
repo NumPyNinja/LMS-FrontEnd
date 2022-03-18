@@ -23,7 +23,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## You can access application here - https://stackblitz.com/github/priyankapawar165/LMS
+## You can access application here - https://stackblitz.com/github/NumPyNinja/LMS-FrontEnd
 
 ## Further help
 
