@@ -9,7 +9,7 @@ import { Program } from './program';
 export class ProgramService {
 
    
-  url: string = '/api/programs';
+  url: string = 'https://lms-admin-rest-service.herokuapp.com/programs';
 
   constructor(private httpClient: HttpClient) {}
 
