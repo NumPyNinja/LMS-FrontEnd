@@ -167,7 +167,7 @@ export class ProgramComponent implements OnInit {
   private getProgramList() {
     this.visibility = true;
     this.programService.getPrograms().subscribe((res) => {
-      this.programs = res;
+      this.programs = res.data;
       this.programSize = this.getMaxProgramId(0);
       this.visibility = false;
     });
