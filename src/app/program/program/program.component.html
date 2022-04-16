@@ -1,39 +1,37 @@
 <p-toast></p-toast>
 <div class="signin-content">
     <mat-card>
+        <mat-card-title>
+            <div class="box">
 
-
-
-        <div class="card">
-            <p-toolbar styleClass="p-mb-4">
-                <ng-template pTemplate="right">
-                  <div id="flex-container">
-
-                    <div>
-                 <button pButton pRipple id="new" label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                <div>
+                    <button pButton pRipple id="new" label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
                         (click)="openNew()"></button>
-                    </div>
-                    
-                    <div>
-                    <h5>Manage Program</h5>
-                    </div>
-                    <div>
-                        <span class="p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Search..." />
-                        </span>
-                    </div>
+                </div>
 
-                    </div>
-                </ng-template>
-            </p-toolbar>
+                <div>
+                    Manage Program
+                </div>
+
+                <div>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search..." />
+                    </span>
+                </div>
+
+            </div>
+        </mat-card-title>
+
+
+        <mat-card-content>
 
             <div fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
                 <mat-spinner [diameter]="50" strokeWidth="5" *ngIf="visibility ">
                 </mat-spinner>
             </div>
-            
+
             <p-table #dt responsiveLayout="stack" [value]="programs" [rows]="5" [paginator]="true"
                 [globalFilterFields]="['programName','programDescription','programStatus']"
                 [(selection)]="selectedPrograms" [rowHover]="true" dataKey="id"
@@ -65,13 +63,11 @@
                         <th pSortableColumn="programStatus">Program Status <p-sortIcon field="status"></p-sortIcon>
                         </th>
 
-                        <th pSortableColumn="programStatus">Edit
+                        <th> Actions
                         </th>
 
-
-                        <th pSortableColumn="programStatus">Delete
-                        </th>
-
+                        <!-- <th pSortableColumn="programStatus">Delete
+                        </th> -->
                     </tr>
                 </ng-template>
 
@@ -85,12 +81,16 @@
                         <td>{{program.online}}</td>
 
                         <td>
+                            <div class="action">
+                            <span>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
                                 (click)="editProgram(program)"></button>
-                        </td>
-                        <td>
+                          </span>
+                          <span>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                                 (click)="deleteProgram(program)"></button>
+                          </span>
+                          </div>
                         </td>
                     </tr>
                 </ng-template>
@@ -102,7 +102,9 @@
                 </ng-template>
 
             </p-table>
-        </div>
+        </mat-card-content>
+
+
     </mat-card>
 </div>
 
@@ -129,7 +131,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProgram()"></button>
     </ng-template>
 </p-dialog>

@@ -7,15 +7,14 @@ import { Program } from './program';
   providedIn: 'root',
 })
 export class ProgramService {
-
    
   url: string = 'https://lms-admin-rest-service.herokuapp.com/programs';
 
   constructor(private httpClient: HttpClient) {}
 
-  getPrograms(): Observable<Program[]> {
-    // return this.httpClient.get<any>('assets/Programs.json')
-    return this.httpClient.get<Program[]>(this.url);
+  getPrograms(): Observable<any> {
+    return this.httpClient.get<any>('assets/Programs.json')
+    //return this.httpClient.get<Program[]>(this.url);
   }
 
   addProgram(program: Program): Observable<Program> {
@@ -30,4 +29,5 @@ export class ProgramService {
   deleteProgram(program: Program) {
     return this.httpClient.delete<Program>(this.url + program.programId);
   }
+
 }
