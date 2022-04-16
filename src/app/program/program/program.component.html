@@ -3,11 +3,9 @@
     <mat-card>
         <mat-card-title>
             <div class="box">
-
                 <div>
                     Manage Program
                 </div>
-
                 <div>
                     <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
@@ -15,23 +13,17 @@
                             placeholder="Search..." />
                     </span>
                 </div>
-
                 <div>
-                    <button pButton pRipple id="new" label="A New Program" icon="pi pi-plus" class="p-button-success p-mr-2"
-                        (click)="openNew()"></button>
+                    <button pButton pRipple id="new" label="A New Program" icon="pi pi-plus"
+                        class="p-button-success p-mr-2" (click)="openNew()"></button>
                 </div>
-
             </div>
         </mat-card-title>
-
-
         <mat-card-content>
-
             <div fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
                 <mat-spinner [diameter]="50" strokeWidth="5" *ngIf="visibility ">
                 </mat-spinner>
             </div>
-
             <p-table #dt responsiveLayout="stack" [value]="programs" [rows]="5" [paginator]="true"
                 [globalFilterFields]="['programName','programDescription','programStatus']"
                 [(selection)]="selectedPrograms" [rowHover]="true" dataKey="id"
@@ -62,10 +54,8 @@
                         </th>
                         <th pSortableColumn="programStatus">Program Status <p-sortIcon field="status"></p-sortIcon>
                         </th>
-
                         <th> Actions
                         </th>
-
                         <!-- <th pSortableColumn="programStatus">Delete
                         </th> -->
                     </tr>
@@ -82,32 +72,28 @@
 
                         <td>
                             <div class="action">
-                            <span>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                                (click)="editProgram(program)"></button>
-                          </span>
-                          <span>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                (click)="deleteProgram(program)"></button>
-                          </span>
-                          </div>
+                                <span>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success p-mr-2"
+                                        (click)="editProgram(program)"></button>
+                                </span>
+                                <span>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                        (click)="deleteProgram(program)"></button>
+                                </span>
+                            </div>
                         </td>
                     </tr>
                 </ng-template>
-
                 <ng-template pTemplate="summary">
                     <div class="p-d-flex p-ai-center p-jc-between">
                         In total there are {{programs ? programs.length : 0 }} programs.
                     </div>
                 </ng-template>
-
             </p-table>
         </mat-card-content>
-
-
     </mat-card>
 </div>
-
 <p-dialog [(visible)]="programDialogue" [style]="{width: '450px'}" header="Program Details" [modal]="true"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
@@ -116,7 +102,6 @@
             <input type="text" pInputText id="programName" [(ngModel)]="program.programName" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !program.programName">Name is required.</small>
         </div>
-
         <div class="p-field">
             <label for="programDescription">Description</label>
             <input type="text" id="programDescription" pInputText [(ngModel)]="program.programDescription" required
@@ -126,14 +111,10 @@
             <label for="online">Status</label>
             <input type="text" id="online" pInputText [(ngModel)]="program.online" required rows="3" cols="20" />
         </div>
-
-
     </ng-template>
-
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProgram()"></button>
     </ng-template>
 </p-dialog>
-
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
