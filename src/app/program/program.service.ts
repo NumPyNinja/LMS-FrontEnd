@@ -7,10 +7,10 @@ import { Program } from './program';
   providedIn: 'root',
 })
 export class ProgramService {
-   
+
   url: string = 'https://lms-admin-rest-service.herokuapp.com/programs';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getPrograms(): Observable<any> {
     return this.httpClient.get<any>('assets/Programs.json')

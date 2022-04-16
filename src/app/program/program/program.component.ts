@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Program } from '../program';
-
 import { ProgramService } from '../program.service';
-
 
 @Component({
   selector: 'app-program',
@@ -21,7 +19,7 @@ import { ProgramService } from '../program.service';
   ],
 })
 export class ProgramComponent implements OnInit {
-  
+
   programDialogue: boolean;
 
   programs: Program[];
@@ -33,17 +31,18 @@ export class ProgramComponent implements OnInit {
   submitted: boolean;
 
   programSize: number;
+
   visibility: boolean = false;
 
   constructor(
     private programService: ProgramService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    
-   this.getProgramList();
+
+    this.getProgramList();
   }
 
   openNew() {
@@ -84,7 +83,7 @@ export class ProgramComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.programs = this.programs.filter((val) => val.programId !== program.programId);
-        this.programService.deleteProgram(program).subscribe(response=>{
+        this.programService.deleteProgram(program).subscribe(response => {
           console.log('a program is deleted');
         })
         this.messageService.add({
@@ -108,7 +107,7 @@ export class ProgramComponent implements OnInit {
     if (this.program.programName.trim()) {
       if (this.program.programId) {
         this.programs[this.findIndexById(this.program.programId)] = this.program;
-      
+
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -117,10 +116,10 @@ export class ProgramComponent implements OnInit {
         });
 
         this.programService.editProgram(this.program).subscribe((res) => {
-       console.log('a program is updated')
-          });
+          console.log('a program is updated')
+        });
       } else {
-   
+
         this.programSize = this.programSize + 1;
         this.program.programId = this.programSize.toString();
         this.programs.push(this.program);
@@ -163,7 +162,7 @@ export class ProgramComponent implements OnInit {
     });
     return max;
   }
-  
+
   private getProgramList() {
     this.visibility = true;
     this.programService.getPrograms().subscribe((res) => {

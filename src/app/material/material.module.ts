@@ -26,11 +26,22 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { MatGridListModule } from '@angular/material/grid-list';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+
+
+
 
 @NgModule({
   exports: [
     MatToolbarModule,
+    MatIconModule,
     MatCardModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatMenuModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -54,6 +65,7 @@ import { MatDividerModule } from '@angular/material/divider';
     InputTextareaModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    
   ],
   providers: []
 })

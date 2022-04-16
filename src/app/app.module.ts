@@ -15,11 +15,11 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { ProgramComponent } from './program/program/program.component';
 
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+// import { MatGridListModule } from '@angular/material/grid-list';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatMenuModule } from '@angular/material/menu';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BatchComponent } from './batch/batch/batch.component';
 
@@ -31,7 +31,7 @@ import { BatchComponent } from './batch/batch/batch.component';
     LoginComponent,
     ProgramComponent,
     BatchComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,14 +40,9 @@ import { BatchComponent } from './batch/batch/batch.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
     LayoutModule
   ],
-  providers: [AuthService, AuthGuard,MessageService,ConfirmationService],
+  providers: [AuthService, AuthGuard, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
