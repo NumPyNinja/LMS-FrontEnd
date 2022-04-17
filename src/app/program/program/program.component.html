@@ -15,7 +15,7 @@
                 </div>
                 <div>
                     <button pButton pRipple id="new" label="A New Program" icon="pi pi-plus"
-                        class="p-button-success p-mr-2" (click)="openNew()"></button>
+                     class="p-button-rounded p-button-success" (click)="openNew()"></button>
                 </div>
             </div>
         </mat-card-title>
@@ -74,11 +74,12 @@
                             <div class="action">
                                 <span>
                                     <button pButton pRipple icon="pi pi-pencil"
-                                        class="p-button-rounded p-button-success p-mr-2"
+                                        class="p-button-rounded p-button-success"
                                         (click)="editProgram(program)"></button>
                                 </span>
                                 <span>
-                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    <button pButton pRipple icon="pi pi-trash"
+                                     class="p-button-rounded p-button-danger"
                                         (click)="deleteProgram(program)"></button>
                                 </span>
                             </div>
@@ -113,8 +114,8 @@
         </div>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProgram()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded p-button-success" (click)="saveProgram()"></button>
     </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -1,40 +1,32 @@
 <p-toast></p-toast>
 <div class="signin-content">
     <mat-card>
-        <div class="card">
-            <!-- <p-toolbar styleClass="p-mb-4">
-                <ng-template pTemplate="right">
-                    <div id="flex-container">
-
-                        <div>
-                            <button pButton pRipple id="new" label="New" icon="pi pi-plus"
-                                class="p-button-success p-mr-2" (click)="openNew()"></button>
-                        </div>
-
-                        <div>
-                            <h5>Manage Program</h5>
-                        </div>
-                        <div>
-                            <span class="p-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                    placeholder="Search..." />
-                            </span>
-                        </div>
-
-                    </div>
-                </ng-template>
-            </p-toolbar> -->
-
-            <!-- <div fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
+        <mat-card-title>
+            <div class="box">
+                <div>
+                    Manage Batch
+                </div>
+                <div>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search..." />
+                    </span>
+                </div>
+                <div>
+                    <button pButton pRipple id="new" label="A New Batch" icon="pi pi-plus"
+                        class="p-button-rounded p-button-success" (click)="openNew()"></button>
+                </div>
+            </div>
+        </mat-card-title>
+        <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
                 <mat-spinner [diameter]="50" strokeWidth="5" *ngIf="visibility ">
                 </mat-spinner>
-            </div> -->
-
+            </div>
             <p-table #dt responsiveLayout="stack" [value]="batchList" [rows]="5" [paginator]="true"
-                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="batch"
-                [rowHover]="true" dataKey="id"
-                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="batch" [rowHover]="true"
+                dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
 
                 <!--        
@@ -54,21 +46,18 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="batchName">Batch Name <p-sortIcon field="batchName"></p-sortIcon>
+                        <th pSortableColumn="batchName">Batch Name <p-sortIcon field="programName"></p-sortIcon>
                         </th>
                         <th pSortableColumn="batchName">Batch Description <p-sortIcon field="batchName">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="batchName">Batch Status <p-sortIcon field="batchName"></p-sortIcon>
+                        <th pSortableColumn="progrbatchNameamStatus">Batch Status <p-sortIcon field="batchName">
+                            </p-sortIcon>
                         </th>
-
-                        <th pSortableColumn="batchName">Edit 
+                        <th> Actions
                         </th>
-
-
-                        <th pSortableColumn="batchName">Delete
-                        </th>
-
+                        <!-- <th pSortableColumn="programStatus">Delete
+                        </th> -->
                     </tr>
                 </ng-template>
 
@@ -80,57 +69,53 @@
                         <td>{{batch.batchName}}</td>
                         <td>{{batch.batchDescription}}</td>
                         <td>{{batch.batchStatus}}</td>
-                        <td>{{batch.batchProgramID}}</td>
-
+                        <!-- <td>{{batch.batchProgramID}}</td> -->
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                                (click)="editBatch(batch)"></button>
-                                
-                        </td>
-                        <td>
-                               <button mat-mini-fab color="warn"  (click)="deleteBatch(batch)" >  <mat-icon>delete</mat-icon></button>
-                              
+                            <div class="action">
+                                <span>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success" (click)="editBatch(batch)"></button>
+                                </span>
+                                <span>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                        (click)="deleteBatch(batch)"></button>
+                                </span>
+                            </div>
                         </td>
                     </tr>
                 </ng-template>
-
                 <ng-template pTemplate="summary">
                     <div class="p-d-flex p-ai-center p-jc-between">
-                        In total there are {{batchList ? batchList.length : 0 }}
+                        In total there are {{batchList ? batchList.length : 0 }} batchs.
                     </div>
                 </ng-template>
-
             </p-table>
-        </div>
+        </mat-card-content>
     </mat-card>
 </div>
-
-<p-dialog [(visible)]="batchDialogue" [style]="{width: '450px'}" header="Program Details" [modal]="true"
+<p-dialog [(visible)]="batchDialogue" [style]="{width: '450px'}" header="Batch Details" [modal]="true"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="batchName">Name</label>
             <input type="text" pInputText id="batchName" [(ngModel)]="batch.batchName" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !batch.batchName">Name is required.</small>
+            <small class="p-invalid" *ngIf="submitted && !program.programName">Name is required.</small>
         </div>
-
         <div class="p-field">
             <label for="batchDescription">Description</label>
-            <input type="text" id="batchDescription" pInputText [(ngModel)]="batch.batchDescription" required
-                rows="3" cols="20" />
+            <input type="text" id="batchDescription" pInputText [(ngModel)]="batch.batchDescription" required rows="3"
+                cols="20" />
         </div>
         <div class="p-field">
             <label for="online">Status</label>
             <input type="text" id="online" pInputText [(ngModel)]="batch.online" required rows="3" cols="20" />
         </div>
-
-
     </ng-template>
-
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBatch()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger"
+            (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded p-button-success"
+            (click)="saveSave()"></button>
     </ng-template>
 </p-dialog>
-
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog> 
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

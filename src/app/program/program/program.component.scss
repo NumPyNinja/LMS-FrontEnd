@@ -1,5 +1,5 @@
 :host ::ng-deep {
-  
+
   mat-card {
     max-width: 70%;
     margin: 2em auto;
@@ -66,14 +66,13 @@
   }
 
 
-.action{
-  display: flex;
-  flex-direction: row;
-  width: 50%;
-  justify-content: space-between;
-  color: red;
-}
-
+  .action {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-between;
+    //  color: red;
+  }
 
 }
 
@@ -105,7 +104,7 @@
               display: inline-block;
               margin: -0.4rem 1rem -0.4rem -0.4rem;
               font-weight: bold;
-              color: red;
+              // color: red;
             }
 
             .p-progressbar {
@@ -118,29 +117,26 @@
   }
 }
 
-
-
-
 label {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   text-align: right;
   line-height: 40px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 input {
-  height: 40px;
+  height: 35px;
   flex: 0 0 200px;
+  //width: 100%;
 }
 
 .box {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   color: green;
   width: 90%;
   //width: 10px;
 }
-
