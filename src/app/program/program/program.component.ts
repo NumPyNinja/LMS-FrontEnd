@@ -34,6 +34,8 @@ export class ProgramComponent implements OnInit {
 
   visibility: boolean = false;
 
+  status: string[] = ['Active', 'Inactive'];
+
   constructor(
     private programService: ProgramService,
     private messageService: MessageService,

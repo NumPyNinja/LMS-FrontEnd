@@ -6,6 +6,7 @@
     text-align: center;
   }
 
+  
 
   .p-paginator {
     .p-paginator-current {
@@ -129,7 +130,6 @@ label {
 input {
   height: 35px;
   flex: 0 0 200px;
-  //width: 100%;
 }
 
 .box {
@@ -138,5 +138,11 @@ input {
   justify-content: space-between;
   color: green;
   width: 90%;
-  //width: 10px;
+}
+
+.radio{
+  margin-top: 15px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }

@@ -15,7 +15,7 @@
                 </div>
                 <div>
                     <button pButton pRipple id="new" label="A New Program" icon="pi pi-plus"
-                     class="p-button-rounded p-button-success" (click)="openNew()"></button>
+                        class="p-button-rounded p-button-success" (click)="openNew()"></button>
                 </div>
             </div>
         </mat-card-title>
@@ -69,7 +69,6 @@
                         <td>{{program.programName}}</td>
                         <td>{{program.programDescription}}</td>
                         <td>{{program.online}}</td>
-
                         <td>
                             <div class="action">
                                 <span>
@@ -78,8 +77,7 @@
                                         (click)="editProgram(program)"></button>
                                 </span>
                                 <span>
-                                    <button pButton pRipple icon="pi pi-trash"
-                                     class="p-button-rounded p-button-danger"
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                                         (click)="deleteProgram(program)"></button>
                                 </span>
                             </div>
@@ -108,14 +106,24 @@
             <input type="text" id="programDescription" pInputText [(ngModel)]="program.programDescription" required
                 rows="3" cols="20" />
         </div>
-        <div class="p-field">
-            <label for="online">Status</label>
-            <input type="text" id="online" pInputText [(ngModel)]="program.online" required rows="3" cols="20" />
+
+        <div class="radio">
+            <div>
+            <lable for="online">Status</lable>
+            </div>
+            <div *ngFor="let category of status" >
+                <p-radioButton [inputId]="category" name="category" [value]="category" [(ngModel)]="program.online"> 
+                </p-radioButton>
+                {{category}}
+            </div>          
         </div>
+
     </ng-template>
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded p-button-success" (click)="saveProgram()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger"
+            (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded p-button-success"
+            (click)="saveProgram()"></button>
     </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
