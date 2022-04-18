@@ -16,6 +16,12 @@ import { ConfirmationService } from 'primeng/api';
 import { ProgramComponent } from './program/program/program.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BatchComponent } from './batch/batch/batch.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { UserComponent } from './user/user/user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,8 @@ import { BatchComponent } from './batch/batch/batch.component';
     HomeComponent,
     LoginComponent,
     ProgramComponent,
-    BatchComponent
+    BatchComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,12 @@ import { BatchComponent } from './batch/batch/batch.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LayoutModule
+    LayoutModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule
   ],
   providers: [AuthService, AuthGuard, MessageService, ConfirmationService],
   bootstrap: [AppComponent]

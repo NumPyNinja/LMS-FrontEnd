@@ -30,6 +30,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -65,6 +66,7 @@ import { MatIconModule } from '@angular/material/icon';
     InputTextareaModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatRadioModule
     
   ],
   providers: []
