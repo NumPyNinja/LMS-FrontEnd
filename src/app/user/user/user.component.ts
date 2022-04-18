@@ -89,5 +89,6 @@ export class UserComponent {
 
   onSubmit(): void {
     alert('Thanks!');
+    console.log('display all form data')
   }
 }
