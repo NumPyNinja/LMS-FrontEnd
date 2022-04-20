@@ -7,6 +7,7 @@ export interface User {
     timezone: string;
     linkedUrl: string;
     ugProgram: string;
+    pgProgram: string;
     skill: string;
     experience: number;
     comments: string;
