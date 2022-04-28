@@ -27,7 +27,7 @@
             </div>
             <p-table #dt responsiveLayout="stack" [value]="users" [rows]="5" [paginator]="true"
                 [globalFilterFields]="['firstName','middleName','lastName']"
-                [(selection)]="selectedUsers" [rowHover]="true" dataKey="id"
+                [(selection)]="selectedUsers" [rowHover]="true" dataKey="user_id"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
  
@@ -45,10 +45,9 @@
                 </ng-template>
     
                 <ng-template pTemplate="body" let-user>
-                    <tr [pSelectableRow]="user.user_id">
-                        <td><p-tableCheckbox  name="chk" value="{{user.user_id}}" ></p-tableCheckbox>
-                            
-                        </td>
+                    <tr>
+                        <td><p-tableCheckbox [value]="user"></p-tableCheckbox>
+                         </td>
                         <td>{{user.user_id}}</td>
                         <td>{{user.firstName}} {{user.lastName}}</td>
                         <td style="word-wrap: break-word;">{{user.emailAddress}}</td>
