@@ -1,6 +1,7 @@
 export interface User {
-    
+    user_id:string,
     firstName: string;
+    middleName:string;
     lastName: string;
     emailAddress: string;
     phoneNumber: number;
@@ -10,12 +11,14 @@ export interface User {
     ugProgram: string;
     pgProgram: string;
     skill: string;
-    experience: number;
+    prevExp:string;
+    experience: string;
     comments: string;
     fileType: string;
     userRole: string;
     batch: string;
     program: string;
+    visaStatus:string;
     userName: string;
     password: string;
 }
