@@ -26,7 +26,7 @@
             </div>
             <p-table #dt responsiveLayout="stack" [value]="programs" [rows]="5" [paginator]="true"
                 [globalFilterFields]="['programName','programDescription','programStatus']"
-                [(selection)]="selectedPrograms" [rowHover]="true" dataKey="id"
+                [(selection)]="selectedPrograms" [rowHover]="true" dataKey="programId"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
 
