@@ -66,7 +66,19 @@ import { MatRadioModule } from '@angular/material/radio';
     InputTextareaModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatRadioModule
+    MatRadioModule,
+  
+    
+    CalendarModule,
+		SliderModule,
+		DialogModule,
+		MultiSelectModule,
+		ContextMenuModule,
+		DropdownModule,
+		ButtonModule,
+		ToastModule,
+    InputTextModule,
+    ProgressBarModule,
     
   ],
   providers: []

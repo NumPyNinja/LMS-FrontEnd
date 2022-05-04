@@ -1,7 +1,8 @@
 export interface User {
-    emailAddress: string;
+    
     firstName: string;
     lastName: string;
+    emailAddress: string;
     phoneNumber: number;
     location: string;
     timezone: string;
