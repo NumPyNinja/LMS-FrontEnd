@@ -9,6 +9,7 @@ import { UserComponent } from './user/user/user.component';
 import { AttendanceComponent } from './attendance/attendance/attendance.component';
 
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },

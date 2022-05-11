@@ -25,6 +25,7 @@ import { UserComponent } from './user/user/user.component';
 import { AttendanceComponent } from './attendance/attendance/attendance.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { AttendanceComponent } from './attendance/attendance/attendance.componen
     BatchComponent,
     UserComponent,
     AttendanceComponent,
+    
   ],
   imports: [
     BrowserModule,

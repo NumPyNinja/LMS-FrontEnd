@@ -30,18 +30,6 @@
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
 
-                <!--        
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex p-ai-start">
-                
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                        placeholder="Search..." />
-                </span>
-            </div>
-        </ng-template> -->
-
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="width: 3rem">
@@ -56,8 +44,6 @@
                         </th>
                         <th> Actions
                         </th>
-                        <!-- <th pSortableColumn="programStatus">Delete
-                        </th> -->
                     </tr>
                 </ng-template>
 

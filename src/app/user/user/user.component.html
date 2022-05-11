@@ -15,7 +15,7 @@
                 </div>
                 <div >
                     <button pButton pRipple id="new" label="Add New User" icon="pi pi-plus"
-                            class="p-button-rounded p-button-success" >
+                            class="p-button-rounded p-button-success" (click)="openNew()" >
                     </button>
                 </div>
             </div>
@@ -73,12 +73,275 @@
                     <div class="p-d-flex p-ai-center p-jc-between" style="text-align: center;"> In total there are {{users ? users.length : 0 }}  users.</div>
                 </ng-template>
             </p-table>
-        </mat-card-content>
-           
-        
-
-
-
+        </mat-card-content>        
     </mat-card>
+
+    <p-dialog [(visible)]="userDialogue" [style]="{width: '68%'}" header="User Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        
+        <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+            <mat-card class="user-card">
+          
+              <mat-card-content>
+          
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="First name" formControlName="firstName">
+                      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
+                        First name is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Middle name" formControlName="middleName">
+                      <mat-error *ngIf="userForm.controls['middleName'].hasError('required')">
+                        Middle name is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Last name" formControlName="lastName">
+                      <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
+                        Last name is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+          
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Email address" formControlName="emailAddress">
+                      <mat-error *ngIf="userForm.controls['emailAddress'].hasError('required')">
+                        Email address is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Phone no" formControlName="phoneNumber">
+                      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')">
+                        Phone number is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                 
+                </div>
+          
+          
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <textarea matInput placeholder="Address" formControlName="address"></textarea>
+                      <mat-error *ngIf="userForm.controls['address'].hasError('required')">
+                        Address is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row" *ngIf="!hasUnitNumber">
+                  <div class="col">
+                    <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber">
+                      + Add C/O, Apt, Suite, Unit
+                    </button>
+                  </div>
+                </div>
+                <div class="row" *ngIf="hasUnitNumber">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <textarea matInput placeholder="Address 2" formControlName="address2"></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="City" formControlName="city">
+                      <mat-error *ngIf="userForm.controls['city'].hasError('required')">
+                        City is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <mat-select placeholder="State" formControlName="state">
+                        <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+                          {{ state.name }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="userForm.controls['state'].hasError('required')">
+                        State is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
+                      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!-- <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
+                      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div> -->
+          
+          
+          
+          
+             <div class="row">
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Program" formControlName="program">
+                      <mat-error *ngIf="userForm.controls['program'].hasError('required')">
+                        Program name is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="UG Program" formControlName="ugProgram">
+                      <mat-error *ngIf="userForm.controls['ugProgram'].hasError('required')">
+                        UG program is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="PG Program" formControlName="pgProgram">
+                      <mat-error *ngIf="userForm.controls['pgProgram'].hasError('required')">
+                        PG program is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+          
+          
+          
+             <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Skill" formControlName="skill">
+                  <mat-error *ngIf="userForm.controls['skill'].hasError('required')">
+                    Skill name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Experience" formControlName="experience">
+                  <mat-error *ngIf="userForm.controls['experience'].hasError('required')">
+                    Experience is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Previous Experience" formControlName="prevExp">
+                  <mat-error *ngIf="userForm.controls['prevExp'].hasError('required')">
+                    Previous Experience is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          
+          
+          
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Visa status" formControlName="visaStatus">
+                  <mat-error *ngIf="userForm.controls['visaStatus'].hasError('required')">
+                    Visa status is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Batch" formControlName="batch">
+                  <mat-error *ngIf="userForm.controls['batch'].hasError('required')">
+                    Batch is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Comments" formControlName="comments">
+                  <mat-error *ngIf="userForm.controls['comments'].hasError('required')">
+                    Comment is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          
+          
+          
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="User name" formControlName="userName">
+                  <mat-error *ngIf="userForm.controls['userName'].hasError('required')">
+                    User name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Password" formControlName="password">
+                  <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+                    password is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="File type" formControlName="fileType">
+                  <mat-error *ngIf="userForm.controls['fileType'].hasError('required')">
+                    File type is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          
+          
+                <!-- <div class="row">
+                  <div class="col">
+                    <mat-radio-group formControlName="shipping">
+                      <mat-radio-button value="free">Free Shipping</mat-radio-button>
+                      <mat-radio-button value="priority">Priority Shipping</mat-radio-button>
+                      <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div> -->
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-raised-button color="warn" type="submit">Cancel</button>
+                <button mat-raised-button color="primary" type="submit"  >Submit</button>
+
+                
+              </mat-card-actions>
+            </mat-card>
+          </form>
+          
+
+    </ng-template>
+    <!-- <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger"
+            (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded p-button-success"
+            (click)="saveProgram()"></button>
+    </ng-template> -->
+</p-dialog>
     
 </div>
