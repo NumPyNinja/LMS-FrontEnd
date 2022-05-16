@@ -1,6 +1,6 @@
 :host ::ng-deep {
 
-  mat-card {
+  .container{
     max-width: 70%;
     margin: 2em auto;
     text-align: center;
@@ -154,7 +154,7 @@ input {
 
 .user-card {
   min-width: 120px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .mat-radio-button {
