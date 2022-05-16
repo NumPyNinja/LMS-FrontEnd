@@ -46,7 +46,11 @@ export class UserComponent implements OnInit {
     this.user = { ...user };
     this.viewUserDialogue = true;
   }
- 
+  hideDialog() {
+    this.userDialogue = false;
+    this.viewUserDialogue=false;
+   this.submitted=false;
+  }
   openNew() {
     this.user = {};
     this.submitted = false;
