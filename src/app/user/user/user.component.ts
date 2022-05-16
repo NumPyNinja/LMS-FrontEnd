@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import{User}from '../user';
 import { UserService } from '../user.service';
+
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -16,10 +19,12 @@ export class UserComponent implements OnInit {
   selectedUsers: User[];
   submitted: boolean;
   userDialogue : boolean = false;
+  viewUserDialogue:boolean=false;
 
 
 
-  constructor(private userService: UserService,private fb: FormBuilder) { }
+  constructor(private userService: UserService,private fb: FormBuilder,private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
  
   ngOnInit(): void { 
     this.getUserList();
@@ -36,6 +41,10 @@ export class UserComponent implements OnInit {
       this.visibility = false;
     });
     
+  }
+  viewUser(user: User) {
+    this.user = { ...user };
+    this.viewUserDialogue = true;
   }
  
   openNew() {
@@ -201,6 +210,19 @@ export class UserComponent implements OnInit {
     }
   }
  
+  deleteUser(user: User) {
+    this.confirmationService.confirm({
+        
+        message: 'Are you sure you want to delete ' + user.firstName + " " + user.middleName + " " + user.lastName +'?',
+        header: 'Confirm',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.users = this.users.filter(val => val.user_id !== user.user_id);
+            //this.user = {};
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
+        }
+    });
+}
 
   findIndexById(id: string): number {
     let index = -1;

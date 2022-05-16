@@ -48,7 +48,7 @@
                     <tr>
                         <td><p-tableCheckbox [value]="user"></p-tableCheckbox>
                          </td>
-                        <td>{{user.user_id}}</td>
+                         <td><p-button label="{{user.user_id}}" styleClass="p-button-link"  (click)="viewUser(user)"></p-button></td>
                         <td>{{user.firstName}} {{user.lastName}}</td>
                         <td style="word-wrap: break-word;">{{user.emailAddress}}</td>
                         <td>{{user.phoneNumber}}</td>
@@ -76,7 +76,7 @@
                               </span>
                               <span>
                                   <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                                      (click)="deleteProgram(user)"></button>
+                                      (click)="deleteUser(user)"></button>
                               </span>
                           </div>
                         </td>
@@ -352,5 +352,99 @@
             (click)="saveProgram()"></button>
     </ng-template> -->
 </p-dialog>
+
+
+<p-dialog [(visible)]="viewUserDialogue" [style]="{width: '700px'}" header="User Details" [modal]="true"
+    styleClass="p-fluid">
+ 
+     <p-table styleClass="p-datatable-gridlines" responsiveLayout="scroll" *ngIf='user'>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>First Name </th>
+                <th><span class="viewtableData">{{user.firstName}}</span></th>
+            </tr>
+            <tr>
+                <th>Middle Name </th>
+                <th><span class="viewtableData">{{user.middleName}}</span></th>
+            </tr>
+            <tr>
+                <th>Last Name </th>
+                <th><span class="viewtableData">{{user.lastName}}</span></th>
+            </tr>
+            <tr>
+                <th>Email Address </th>
+                <th><span class="viewtableData">{{user.emailAddress}}</span></th>
+            </tr>
+            <tr>
+                <th>Phone Number </th>
+                <th><span class="viewtableData">{{user.phoneNumber}}</span></th>
+            </tr>
+            <tr>
+                <th>Location </th>
+                <th><span class="viewtableData">{{user.location}}</span></th>
+            </tr>
+            <tr>
+                <th>Time Zone </th>
+                <th><span class="viewtableData">{{user.timezone}}</span></th>
+            </tr>
+            <tr>
+                <th>Linkedin URL </th>
+                <th><span class="viewtableData">{{user.linkedUrl}}</span></th>
+            </tr>
+            <tr>
+                <th>UG Programme </th>
+                <th><span class="viewtableData">{{user.ugProgram}}</span></th>
+            </tr>
+            <tr>
+                <th>PG Programme </th>
+                <th><span class="viewtableData">{{user.pgProgram}}</span></th>
+            </tr>
+            <tr>
+                <th>Skills </th>
+                <th><span class="viewtableData">{{user.skill}}</span></th>
+            </tr>
+            <tr>
+                <th>Previous Experience </th>
+                <th><span class="viewtableData">{{user.prevExp}}</span></th>
+            </tr>
+            <tr>
+                <th>Total Experience </th>
+                <th><span class="viewtableData">{{user.experience}}</span></th>
+            </tr>
+            <tr>
+                <th>Comments</th>
+                <th><span class="viewtableData">{{user.comments}}</span></th>
+            </tr>
+            <tr>
+                <th>File Type</th>
+                <th><span class="viewtableData">{{ user.fileType}}</span></th>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <th><span class="viewtableData">{{user.userRole}}</span></th>
+            </tr>
+            <tr>
+                <th>Batch</th>
+                <th><span class="viewtableData">{{user.batch}}</span></th>
+            </tr>
+            <tr>
+                <th>Program</th>
+                <th><span class="viewtableData">{{user.program}}</span></th>
+            </tr>
+            <tr>
+                <th>Visa Status</th>
+                <th><span class="viewtableData">{{user.visaStatus}}</span></th>
+            </tr>
+        </ng-template>
+    </p-table> 
+   
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger"
+            (click)="hideDialog()"></button>
+      
+    </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     
 </div>
