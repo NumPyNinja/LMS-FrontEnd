@@ -30,4 +30,3 @@ export class UserService {
     //return this.httpClient.delete<User>(this.url + user.userId);
   }
 }
-

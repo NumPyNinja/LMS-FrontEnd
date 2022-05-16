@@ -24,6 +24,8 @@ import { MatCardModule } from '@angular/material/card';
 import { UserComponent } from './user/user/user.component';
 import { AttendanceComponent } from './attendance/attendance/attendance.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { AttendanceComponent } from './attendance/attendance/attendance.componen
     ProgramComponent,
     BatchComponent,
     UserComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    
   ],
   imports: [
     BrowserModule,

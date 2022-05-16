@@ -1,6 +1,6 @@
 :host ::ng-deep {
 
-  mat-card {
+  .container{
     max-width: 70%;
     margin: 2em auto;
     text-align: center;
@@ -146,6 +146,36 @@ input {
   width: 100%;
   justify-content: space-between;
 }
+
+
+.full-width {
+  width: 100%;
+}
+
+.user-card {
+  min-width: 120px;
+  margin: 10px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
 .viewtableData{
   font-weight: normal;
-}
+} 

@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="signin-content">
-    <mat-card>
+    <mat-card class="container">
         <mat-card-title>
             <div class="box" >
                 <div>
@@ -48,14 +48,14 @@
                     <tr>
                         <td><p-tableCheckbox [value]="user"></p-tableCheckbox>
                          </td>
-                        <td><p-button label="{{user.user_id}}" styleClass="p-button-link"  (click)="viewUser(user)"></p-button></td>
+                         <td><p-button label="{{user.user_id}}" styleClass="p-button-link"  (click)="viewUser(user)"></p-button></td>
                         <td>{{user.firstName}} {{user.lastName}}</td>
                         <td style="word-wrap: break-word;">{{user.emailAddress}}</td>
                         <td>{{user.phoneNumber}}</td>
                         <td>{{user.batch}}</td>
                         <td>{{user.skill}}</td>
                         <td>
-                            <div class="action">
+                            <!-- <div class="action">
                                 <span>
                                     <button pButton pRipple icon="pi pi-pencil"
                                         class="p-button-rounded p-button-success"
@@ -63,9 +63,22 @@
                                 </span>&nbsp;&nbsp;&nbsp;
                                 <span>
                                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                                    (click)="deleteUser(user)"  ></button>
+                                        ></button>
                                 </span>
-                            </div>
+                            </div> -->
+
+
+                            <div class="action">
+                              <span>
+                                  <button pButton pRipple icon="pi pi-pencil"
+                                      class="p-button-rounded p-button-success"
+                                      (click)="editProgram(user)"></button>
+                              </span>
+                              <span>
+                                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                      (click)="deleteUser(user)"></button>
+                              </span>
+                          </div>
                         </td>
                     </tr>
                 </ng-template>
@@ -82,9 +95,7 @@
         
         <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
             <mat-card class="user-card">
-          
-              <mat-card-content>
-          
+              <mat-card-content>        
                 <div class="row">
                   <div class="col">
                     <mat-form-field class="full-width">
@@ -108,7 +119,7 @@
                       <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
                         Last name is <strong>required</strong>
                       </mat-error>
-                    </mat-form-field>
+                    </mat-form-field> 
                   </div>
                 </div>
           
@@ -325,11 +336,9 @@
                   </div>
                 </div> -->
               </mat-card-content>
-              <mat-card-actions>
+              <mat-card-actions style="display: flex; justify-content: center; text-align:center;">
                 <button mat-raised-button color="warn" type="submit">Cancel</button>
-                <button mat-raised-button color="primary" type="submit"  >Submit</button>
-
-                
+                <button mat-raised-button color="primary" type="submit"  >Submit</button>          
               </mat-card-actions>
             </mat-card>
           </form>
@@ -343,8 +352,7 @@
             (click)="saveProgram()"></button>
     </ng-template> -->
 </p-dialog>
-    
-</div>
+
 
 <p-dialog [(visible)]="viewUserDialogue" [style]="{width: '700px'}" header="User Details" [modal]="true"
     styleClass="p-fluid">
@@ -438,3 +446,5 @@
     </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    
+</div>
