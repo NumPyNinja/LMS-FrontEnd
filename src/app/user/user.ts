@@ -5,6 +5,7 @@ export interface User {
     lastName?: string;
     emailAddress?: string;
     phoneNumber?: number;
+    address?: string;
     location?: string;
     timezone?: string;
     linkedUrl?: string;
@@ -21,4 +22,9 @@ export interface User {
     visaStatus?:string;
     userName?: string;
     password?: string;
+    city?: string;
+    state?:string;
+    postalCode?: string;
+    shippig?: string;
+ 
 }

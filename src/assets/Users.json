@@ -21,7 +21,13 @@
           "program": "SDET",
           "visaStatus":"H4 applied",
           "userName": "john",
-          "password": "john"
+          "password": "john",
+          "address":"test",
+          "city": "test",
+          "state": "test",
+          "postalCode" : "test",
+          "shippig" : "test"
+        
           
         },
         {
@@ -45,7 +51,13 @@
           "program": "SDET",
           "visaStatus":"H4 applied",
           "userName": "john",
-          "password": "john"
+          "password": "john",
+          "address":"test",
+          "city" :"test",
+          "state" : "test",
+          "postalCode" : "test",
+          "shippig" : "test"
+          
         },
         {
           "user_id":"U003",
@@ -68,7 +80,12 @@
           "program": "SDET",
           "visaStatus":"H4 applied",
           "userName": "john",
-          "password": "john"
+          "password": "john",
+          "address":"test",
+          "city":"test",
+          "state" : "test",
+          "postalCode" : "test",
+          "shippig" : "test"
         },
         {
           "user_id":"U004",
@@ -91,6 +108,11 @@
           "program": "SDET",
           "visaStatus":"H4 applied",
           "userName": "john",
-          "password": "john"
+          "password": "john",
+          "address":"test",
+          "city":"test",
+          "state" :"test",
+          "postalCode" : "test",
+          "shippig" : "test"
         }]
 }

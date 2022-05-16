@@ -8,15 +8,15 @@ import { UserService } from '../user.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+
   users: User[];
   user:User;
   visibility: boolean = false;
   userSize: number;
   selectedUsers: User[];
-
   submitted: boolean;
-
   userDialogue : boolean = false;
+
 
 
   constructor(private userService: UserService,private fb: FormBuilder) { }
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
   }
 
   userForm = this.fb.group({
-    company: null,
+    user_id:[],
     firstName: [null, Validators.required],
     middleName: [null, Validators.required],
     lastName: [null, Validators.required],
@@ -60,13 +60,13 @@ export class UserComponent implements OnInit {
     experience: [null, Validators.required],
     comments: [null, Validators.required],
     fileType: [null, Validators.required],
+    location:[],
     userRole: [null, Validators.required],
     batch: [null, Validators.required],
     visaStatus: [null, Validators.required],
     userName: [null, Validators.required],
     password: [null, Validators.required],
     address: [null, Validators.required],
-    address2: null,
     city: [null, Validators.required],
     state: [null, Validators.required],
     postalCode: [null, Validators.compose([
@@ -141,8 +141,76 @@ export class UserComponent implements OnInit {
   ];
 
 
-  onSubmit(): void {
+  onSubmit1(): void {
+    console.log('this.userForm' + this.userForm);
+    this.userForm.value;
+
+    this.users.push(this.userForm.value);
     alert('Thanks!');
   }
+
+  editProgram(user: User) {
+
+    console.log('Tesggggggg')
+    this.userForm.setValue(user);
+    this.userDialogue = true;
+   
+  }
+
  
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.userForm.value) {
+      if (this.userForm.value.user_id) {
+
+        this.users[this.findIndexById(this.userForm.value.user_id)] = this.userForm.value.user_id;
+      //  this.users[this.findIndexById(this.userForm.u)]
+        // this.messageService.add({
+        //   severity: 'success',
+        //   summary: 'Successful',
+        //   detail: 'Program Updated',
+        //   life: 3000,
+        // });
+
+        // this.programService.editProgram(this.program).subscribe((res) => {
+        //   console.log('a program is updated')
+        // });
+      } else {
+
+        this.userSize = this.userSize + 1;
+        this.user.user_id = this.userSize.toString();
+        this.users.push(this.userForm.value);
+
+        // this.programService.addProgram(this.program).subscribe((res) => {
+        // });
+
+
+        // this.messageService.add({
+        //   severity: 'success',
+        //   summary: 'Successful',
+        //   detail: 'Program Created',
+        //   life: 3000,
+        // });
+
+      }
+
+      this.users = [...this.users];
+      this.userDialogue = false;
+      this.user= {};
+    }
+  }
+ 
+
+  findIndexById(id: string): number {
+    let index = -1;
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].user_id === id) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
 }
