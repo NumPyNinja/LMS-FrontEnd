@@ -2,10 +2,14 @@
 <div class="signin-content">
     <mat-card class="container">
         <mat-card-title>
-            <div class="box" >
+          <div class="box" >
+            Manage User<br>
+          </div><br>
+          <div class="box" >
                 <div>
-                    Manage User
+                  <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUsers()" [disabled]="!selectedUsers || !selectedUsers.length"></button>
                 </div>
+                
                 <div >
                     <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
@@ -35,12 +39,12 @@
                     <tr>
                         <th style="width: 3rem"><p-tableHeaderCheckbox ></p-tableHeaderCheckbox></th>
                         <th style="width: 6rem" pSortableColumn="user_id">ID <p-sortIcon field="user_id"></p-sortIcon></th>
-                        <th style="width: 8rem" pSortableColumn="firstName">Name <p-sortIcon field="firstName"></p-sortIcon></th>
-                        <th style="width: 10rem" pSortableColumn="emailAddress">Email Address <p-sortIcon field="emailAddress"></p-sortIcon></th>
+                        <th style="width: 10rem" pSortableColumn="firstName">Name <p-sortIcon field="firstName"></p-sortIcon></th>
+                        <th  style="width: 15rem" pSortableColumn="emailAddress">Email Address <p-sortIcon field="emailAddress"></p-sortIcon></th>
                         <th style="width: 12rem" pSortableColumn="phoneNumber">Contact Number <p-sortIcon field="phoneNumber"></p-sortIcon></th>
                         <th style="width: 7rem" pSortableColumn="batch">Batch <p-sortIcon field="batch"></p-sortIcon></th>
                         <th style="width: 7rem" pSortableColumn="skill">Skill <p-sortIcon field="skill"></p-sortIcon></th>
-                        <th style="width: 6rem" > Actions</th>
+                        <th style="width: 10rem"> Edit / Delete</th>
                     </tr>
                 </ng-template>
     
@@ -55,25 +59,12 @@
                         <td>{{user.batch}}</td>
                         <td>{{user.skill}}</td>
                         <td>
-                            <!-- <div class="action">
-                                <span>
-                                    <button pButton pRipple icon="pi pi-pencil"
-                                        class="p-button-rounded p-button-success"
-                                        ></button>
-                                </span>&nbsp;&nbsp;&nbsp;
-                                <span>
-                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                                        ></button>
-                                </span>
-                            </div> -->
-
-
-                            <div class="action">
+                         <div class="action">
                               <span>
                                   <button pButton pRipple icon="pi pi-pencil"
                                       class="p-button-rounded p-button-success"
                                       (click)="editProgram(user)"></button>
-                              </span>
+                              </span>&nbsp;&nbsp;&nbsp;
                               <span>
                                   <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                                       (click)="deleteUser(user)"></button>

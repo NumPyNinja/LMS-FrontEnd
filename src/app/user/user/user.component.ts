@@ -28,15 +28,13 @@ export class UserComponent implements OnInit {
  
   ngOnInit(): void { 
     this.getUserList();
-  console.log(this.selectedUsers);
   }
   private selectRow(checkValue: any) {
-    console.log(checkValue);
+  // console.log(checkValue);
   }
   private getUserList() {
     this.visibility = true;
     this.userService.getUsers().subscribe((res)=> {
-      console.log(res.userDetails);
       this.users=res.userDetails;
       this.visibility = false;
     });
@@ -213,7 +211,18 @@ export class UserComponent implements OnInit {
       this.user= {};
     }
   }
- 
+  deleteSelectedUsers() {
+    this.confirmationService.confirm({
+        message: 'Are you sure you want to delete the selected Users?',
+        header: 'Confirm',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.users = this.users.filter(val => !this.selectedUsers.includes(val));
+            this.selectedUsers = null;
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Users Deleted', life: 3000});
+        }
+    });
+}
   deleteUser(user: User) {
     this.confirmationService.confirm({
         
