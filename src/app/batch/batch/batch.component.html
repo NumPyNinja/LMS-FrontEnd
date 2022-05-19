@@ -2,9 +2,12 @@
 <div class="signin-content">
     <mat-card>
         <mat-card-title>
+            <div class="box" >
+                Manage Batch<br>
+              </div><br>
             <div class="box">
                 <div>
-                    Manage Batch
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBatches()" [disabled]="!selectedBatches || !selectedBatches.length"></button>
                 </div>
                 <div>
                     <span class="p-input-icon-left">
@@ -25,7 +28,7 @@
                 </mat-spinner>
             </div>
             <p-table #dt responsiveLayout="stack" [value]="batchList" [rows]="5" [paginator]="true"
-                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="batch" [rowHover]="true"
+                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="selectedBatches" [rowHover]="true"
                 dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
 
@@ -54,7 +57,7 @@
                         <th pSortableColumn="progrbatchNameamStatus">Batch Status <p-sortIcon field="batchName">
                             </p-sortIcon>
                         </th>
-                        <th> Actions
+                        <th>  Edit / Delete
                         </th>
                         <!-- <th pSortableColumn="programStatus">Delete
                         </th> -->

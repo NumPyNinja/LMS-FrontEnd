@@ -23,7 +23,7 @@ batchList: Batch[];
 
   batch: Batch;
 
-  selectedPrograms: Batch[];
+  selectedBatches: Batch[];
 
   submitted: boolean;
 
@@ -50,21 +50,21 @@ batchList: Batch[];
     this.batchDialogue = true;
   }
 
-  deleteSelectedPrograms() {
-
+  deleteSelectedBatches() {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected programs?',
+     
+      message: 'Are you sure you want to delete the selected batches?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.batchList = this.batchList.filter(
-          (val) => !this.selectedPrograms.includes(val)
+          (val) => !this.selectedBatches.includes(val)
         );
-        this.selectedPrograms = null;
+        this.selectedBatches = null;
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Programs Deleted',
+          detail: 'Batches Deleted',
           life: 3000,
         });
       },
@@ -83,7 +83,7 @@ batchList: Batch[];
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.batchList = this.batchList.filter((val) => val.batchProgramID !== batch.batchProgramID);
+        this.batchList = this.batchList.filter((val) => val.id !== batch.id);
         //this.programService.deleteProgram(program).subscribe(response=>{
          // console.log('a program is deleted');
         //})
