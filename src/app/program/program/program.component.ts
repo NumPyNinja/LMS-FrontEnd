@@ -34,7 +34,7 @@ export class ProgramComponent implements OnInit {
 
   visibility: boolean = false;
 
-  status: string[] = ['Active', 'Inactive'];
+  status: string[] = ['active', 'notActive'];
 
   constructor(
     private programService: ProgramService,
@@ -75,6 +75,7 @@ export class ProgramComponent implements OnInit {
 
   editProgram(program: Program) {
     this.program = { ...program };
+    console.log('Edit Program Test' + this.program)
     this.programDialogue = true;
   }
 
@@ -104,8 +105,8 @@ export class ProgramComponent implements OnInit {
   }
 
   saveProgram() {
-    this.submitted = true;
 
+    this.submitted = true;
     if (this.program.programName.trim()) {
       if (this.program.programId) {
         this.programs[this.findIndexById(this.program.programId)] = this.program;
@@ -168,7 +169,7 @@ export class ProgramComponent implements OnInit {
   private getProgramList() {
     this.visibility = true;
     this.programService.getPrograms().subscribe((res) => {
-      this.programs = res.data;
+      this.programs = res;
       this.programSize = this.getMaxProgramId(0);
       this.visibility = false;
     });

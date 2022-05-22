@@ -3,5 +3,4 @@ export interface Program {
     programName?:string;
     programDescription?:string;
     programStatus?:string;
-    online?: boolean;
 }

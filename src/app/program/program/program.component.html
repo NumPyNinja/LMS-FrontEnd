@@ -57,7 +57,7 @@
                         </td>
                         <td>{{program.programName}}</td>
                         <td>{{program.programDescription}}</td>
-                        <td>{{program.online}}</td>
+                        <td>{{program.programStatus}}</td>
                         <td>
                             <div class="action">
                                 <span>
@@ -101,7 +101,7 @@
             <lable for="online">Status</lable>
             </div>
             <div *ngFor="let category of status" >
-                <p-radioButton [inputId]="category" name="category" [value]="category" [(ngModel)]="program.online"> 
+                <p-radioButton [inputId]="category" name="category" [value]="category" [(ngModel)]="program.programStatus"> 
                 </p-radioButton>
                 {{category}}
             </div>          
