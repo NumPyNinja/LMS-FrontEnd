@@ -8,26 +8,28 @@ import { Program } from './program';
 })
 export class ProgramService {
 
-  url: string = 'https://lms-admin-rest-service.herokuapp.com/programs';
+  url: string = '/api';
 
   constructor(private httpClient: HttpClient) { }
 
-  getPrograms(): Observable<any> {
-    return this.httpClient.get<any>('assets/Programs.json')
-    //return this.httpClient.get<Program[]>(this.url);
+  getPrograms(): Observable<Program[]> {
+     return this.httpClient.get<Program[]>('assets/Programs.json')
+   // return this.httpClient.get<Program[]>(this.url + "/allPrograms");
   }
 
   addProgram(program: Program): Observable<Program> {
-    program.online = true;
-    return this.httpClient.post<Program>(this.url, program);
+    return this.httpClient.post<Program>(this.url + "/saveprogram", program);
   }
 
   editProgram(program: Program) {
-    return this.httpClient.put<Program>(this.url + program.programId, program);
+    return this.httpClient.put<Program>(this.url + "/program" + program.programId, program);
   }
 
   deleteProgram(program: Program) {
-    return this.httpClient.delete<Program>(this.url + program.programId);
+    return this.httpClient.delete<Program>(this.url + "/deletebyprogid" + program.programId);
   }
 
 }
+
+
+

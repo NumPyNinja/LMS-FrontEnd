@@ -2,12 +2,13 @@
 <div class="signin-content">
     <mat-card>
         <mat-card-title>
-            <div class="box" >
+            <div class="box">
                 Manage Batch<br>
-              </div><br>
+            </div><br>
             <div class="box">
                 <div>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBatches()" [disabled]="!selectedBatches || !selectedBatches.length"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBatches()"
+                        [disabled]="!selectedBatches || !selectedBatches.length"></button>
                 </div>
                 <div>
                     <span class="p-input-icon-left">
@@ -28,8 +29,9 @@
                 </mat-spinner>
             </div>
             <p-table #dt responsiveLayout="stack" [value]="batchList" [rows]="5" [paginator]="true"
-                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="selectedBatches" [rowHover]="true"
-                dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="selectedBatches"
+                [rowHover]="true" dataKey="batchId"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
 
                 <!--        
@@ -51,13 +53,18 @@
                         </th>
                         <th pSortableColumn="batchName">Batch Name <p-sortIcon field="programName"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="batchName">Batch Description <p-sortIcon field="batchName">
+                        <th pSortableColumn="batchDescription">Batch Description <p-sortIcon field="batchDescription">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="progrbatchNameamStatus">Batch Status <p-sortIcon field="batchName">
+                        <th pSortableColumn="batchStatus">Batch Status <p-sortIcon field="batchStatus">
                             </p-sortIcon>
                         </th>
-                        <th>  Edit / Delete
+                        <th pSortableColumn="batchNoOfClasses">No Of Classes <p-sortIcon field="batchNoOfClasses">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="programName">Program Name <p-sortIcon field="programName"></p-sortIcon>
+                        </th>
+                        <th> Edit / Delete
                         </th>
                         <!-- <th pSortableColumn="programStatus">Delete
                         </th> -->
@@ -72,6 +79,8 @@
                         <td>{{batch.batchName}}</td>
                         <td>{{batch.batchDescription}}</td>
                         <td>{{batch.batchStatus}}</td>
+                        <td>{{batch.batchNoOfClasses}}</td>
+                        <td>{{batch.programName}}</td>
                         <!-- <td>{{batch.batchProgramID}}</td> -->
                         <td>
                             <div class="action">
@@ -102,23 +111,46 @@
         <div class="p-field">
             <label for="batchName">Name</label>
             <input type="text" pInputText id="batchName" [(ngModel)]="batch.batchName" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !program.programName">Name is required.</small>
+            <small class="p-invalid" *ngIf="submitted && !batch.batchName">Name is required.</small>
         </div>
         <div class="p-field">
             <label for="batchDescription">Description</label>
             <input type="text" id="batchDescription" pInputText [(ngModel)]="batch.batchDescription" required rows="3"
                 cols="20" />
         </div>
+
         <div class="p-field">
-            <label for="online">Status</label>
-            <input type="text" id="online" pInputText [(ngModel)]="batch.online" required rows="3" cols="20" />
+            <label for="programName">Batch Program ID</label>
+            <p-dropdown [options]="programList" [(ngModel)]="batch.programId" placeholder="Select a Program name" optionLabel="programName"
+                [showClear]="true"></p-dropdown>
         </div>
+
+        <div class="radio">
+            <div>
+                <lable for="online">Status : </lable>
+            </div>
+            <div *ngFor="let category of status">
+                <p-radioButton [inputId]="category" name="category" [value]="category" [(ngModel)]="batch.batchStatus">
+                </p-radioButton>
+                {{category}}
+            </div>
+        </div>
+
+        <div class="p-field">
+            <label for="batchNoOfClasses">Number of Classes</label>
+            <input type="text" id="batchNoOfClasses" pInputText [(ngModel)]="batch.batchNoOfClasses" required rows="3"
+                cols="20" />
+        </div>
+
+
+
+
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger"
             (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded p-button-success"
-            (click)="saveSave()"></button>
+            (click)="saveBatch()"></button>
     </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

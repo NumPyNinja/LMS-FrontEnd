@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Program } from 'src/app/program/program';
+import { ProgramService } from 'src/app/program/program.service';
 import { Batch } from '../batch';
 import { BatchService } from '../batch.service';
 
@@ -18,8 +20,8 @@ import { BatchService } from '../batch.service';
   ],
 })
 export class BatchComponent implements OnInit {
-  
-batchList: Batch[];
+
+  batchList: Batch[];
 
   batch: Batch;
 
@@ -31,18 +33,61 @@ batchList: Batch[];
   visibility: boolean = false;
   batchDialogue: boolean;
 
+  status: string[] = ['ACTIVE', 'INACTIVE'];
+  // programList : Program[];
+
+
+   programList :Program[];
+   
+  //  = [
+  //   {
+  //     "programId": "9",
+  //     "programName": "dart-n-flutter",
+  //     "programDescription": "not launched course",
+  //     "programStatus": "notActive"
+  //   },
+  //   {
+  //     "programId": "12",
+  //     "programName": "MEAN stack",
+  //     "programDescription": "not launched course",
+  //     "programStatus": "notActive"
+  //   },
+  //   {
+  //     "programId": "2",
+  //     "programName": "restAssured",
+  //     "programDescription": "string",
+  //     "programStatus": "active"
+  //   }
+  // ]
+
+
   constructor(
-    private programService: BatchService,
+    private batchService: BatchService,
+    private programService: ProgramService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) { 
+
+
+
+
+  }
 
   ngOnInit() {
-    this.programService.getBatchList().subscribe(res=>{
-      this.batchList=res.data;
+
+
+this.programService.getPrograms().subscribe(list=>{
+  this.programList = list;
+})
+
+    this.batchService.getBatchList().subscribe(res => {
+      this.batchList = res;
     })
- //  this.getProgramList();
+    //  this.getProgramList();
   }
+
+
+
 
   openNew() {
     this.batch = {};
@@ -52,7 +97,7 @@ batchList: Batch[];
 
   deleteSelectedBatches() {
     this.confirmationService.confirm({
-     
+
       message: 'Are you sure you want to delete the selected batches?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
@@ -83,10 +128,11 @@ batchList: Batch[];
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.batchList = this.batchList.filter((val) => val.id !== batch.id);
-        //this.programService.deleteProgram(program).subscribe(response=>{
-         // console.log('a program is deleted');
-        //})
+        this.batchList = this.batchList.filter((val) => val.batchId!== batch.batchId);
+        
+        this.batchService.deleteBatch(batch).subscribe(response => {
+          console.log('a program is deleted');
+        })
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -106,9 +152,9 @@ batchList: Batch[];
     this.submitted = true;
 
     if (this.batch.batchName.trim()) {
-      if (this.batch.batchProgramID) {
-        this.batchList[this.findIndexById(this.batch.batchProgramID)] = this.batch;
-      
+      if (this.batch.batchId) {
+        this.batchList[this.findIndexById(this.batch.batchId)] = this.batch;
+
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -116,17 +162,17 @@ batchList: Batch[];
           life: 3000,
         });
 
-       // this.programService.editProgram(this.program).subscribe((res) => {
-    //   console.log('a program is updated')
-      //    });
+        this.batchService.updateBatch(this.batch).subscribe((res) => {
+          console.log('a program is updated')
+        });
 
       } else {
-   
+
         this.programSize = this.programSize + 1;
-        this.batch.batchProgramID = this.programSize.toString();
+        this.batch.batchId = this.programSize.toString();
         this.batchList.push(this.batch);
-        //this.programService.addProgram(this.program).subscribe((res) => {
-        //});
+        this.batchService.updateBatch(this.batch).subscribe((res) => {
+        });
 
 
         this.messageService.add({
@@ -146,7 +192,7 @@ batchList: Batch[];
   findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.batchList.length; i++) {
-      if (this.batchList[i].batchProgramID === id) {
+      if (this.batchList[i].batchId=== id) {
         index = i;
         break;
       }
@@ -156,7 +202,7 @@ batchList: Batch[];
 
   private getMaxProgramId(max: number) {
     this.batchList.forEach((character) => {
-      const tempProgramId = Number(character.batchProgramID);
+      const tempProgramId = Number(character.batchId);
 
       if (tempProgramId > max) {
         max = tempProgramId;
@@ -164,14 +210,14 @@ batchList: Batch[];
     });
     return max;
   }
-  
+
   private getProgramList() {
     this.visibility = true;
-  //  this.programService.getPrograms().subscribe((res) => {
-   //   this.programs = res;
-   //   this.programSize = this.getMaxProgramId(0);
-   //   this.visibility = false;
-   // });
+    //  this.programService.getPrograms().subscribe((res) => {
+    //   this.programs = res;
+    //   this.programSize = this.getMaxProgramId(0);
+    //   this.visibility = false;
+    // });
   }
 }
 
