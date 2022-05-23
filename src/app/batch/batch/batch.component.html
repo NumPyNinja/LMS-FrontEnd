@@ -2,13 +2,13 @@
 <div class="signin-content">
     <mat-card>
         <mat-card-title>
-            <div class="box" >
+            <div class="box">
                 Manage Batch<br>
-              </div><br>
+            </div><br>
             <div class="box">
                 <div>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBatches()" 
-                    [disabled]="!selectedBatches || !selectedBatches.length"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBatches()"
+                        [disabled]="!selectedBatches || !selectedBatches.length"></button>
                 </div>
                 <div>
                     <span class="p-input-icon-left">
@@ -29,8 +29,9 @@
                 </mat-spinner>
             </div>
             <p-table #dt responsiveLayout="stack" [value]="batchList" [rows]="5" [paginator]="true"
-                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="selectedBatches" [rowHover]="true"
-                dataKey="batchId" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['batchName','batchName','batchName']" [(selection)]="selectedBatches"
+                [rowHover]="true" dataKey="batchId"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [showCurrentPageReport]="true">
 
                 <!--        
@@ -58,11 +59,12 @@
                         <th pSortableColumn="batchStatus">Batch Status <p-sortIcon field="batchStatus">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="batchNoOfClasses">No Of Classes <p-sortIcon field="batchNoOfClasses"></p-sortIcon>
+                        <th pSortableColumn="batchNoOfClasses">No Of Classes <p-sortIcon field="batchNoOfClasses">
+                            </p-sortIcon>
                         </th>
                         <th pSortableColumn="programName">Program Name <p-sortIcon field="programName"></p-sortIcon>
                         </th>
-                        <th>  Edit / Delete
+                        <th> Edit / Delete
                         </th>
                         <!-- <th pSortableColumn="programStatus">Delete
                         </th> -->
@@ -117,28 +119,32 @@
                 cols="20" />
         </div>
 
+        <div class="p-field">
+            <label for="programName">Batch Program ID</label>
+            <p-dropdown [options]="programList" [(ngModel)]="batch.programId" placeholder="Select a Program name" optionLabel="programName"
+                [showClear]="true"></p-dropdown>
+        </div>
+
         <div class="radio">
             <div>
-            <lable for="online">Status</lable>
+                <lable for="online">Status : </lable>
             </div>
-            <div *ngFor="let category of status" >
-                <p-radioButton [inputId]="category" name="category" [value]="category" [(ngModel)]="batch.batchStatus"> 
+            <div *ngFor="let category of status">
+                <p-radioButton [inputId]="category" name="category" [value]="category" [(ngModel)]="batch.batchStatus">
                 </p-radioButton>
                 {{category}}
-            </div>          
+            </div>
         </div>
 
         <div class="p-field">
-            <label for="batchNoOfClasses">Batch of Classes</label>
-            <input type="text" id="batchNoOfClasses" pInputText [(ngModel)]="batch.batchNoOfClasses" required
-                rows="3" cols="20" />
+            <label for="batchNoOfClasses">Number of Classes</label>
+            <input type="text" id="batchNoOfClasses" pInputText [(ngModel)]="batch.batchNoOfClasses" required rows="3"
+                cols="20" />
         </div>
 
-        <div class="p-field">
-            <label for="programName">Program Name</label>
-            <input type="text" id="programName" pInputText [(ngModel)]="batch.programName" required
-                rows="3" cols="20" />
-        </div>
+
+
+
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-rounded p-button-danger"

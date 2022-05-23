@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import{User}from '../user';
 import { UserService } from '../user.service';
 
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -21,6 +22,10 @@ export class UserComponent implements OnInit {
   userDialogue : boolean = false;
   viewUserDialogue:boolean=false;
 
+
+  role = new FormControl();
+  
+  userRole:string[]=['Admin','Staff','Student'];
 
 
   constructor(private userService: UserService,private fb: FormBuilder,private messageService: MessageService,
@@ -188,7 +193,7 @@ export class UserComponent implements OnInit {
         //   console.log('a program is updated')
         // });
       } else {
-
+       console.log('hjgjhgjhg');
         this.userSize = this.userSize + 1;
         this.user.user_id = this.userSize.toString();
         this.users.push(this.userForm.value);

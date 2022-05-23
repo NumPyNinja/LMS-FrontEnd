@@ -12,7 +12,6 @@ export interface User {
     ugProgram?: string;
     pgProgram?: string;
     skill?: string;
-    prevExp?:string;
     experience?: string;
     comments?: string;
     fileType?: string;

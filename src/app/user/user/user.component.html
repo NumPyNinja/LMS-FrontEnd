@@ -232,6 +232,7 @@
           
           
              <div class="row">
+            
               <div class="col">
                 <mat-form-field class="full-width">
                   <input matInput placeholder="Skill" formControlName="skill">
@@ -240,6 +241,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
+
               <div class="col">
                 <mat-form-field class="full-width">
                   <input matInput placeholder="Experience" formControlName="experience">
@@ -248,14 +250,27 @@
                   </mat-error>
                 </mat-form-field>
               </div>
+
               <div class="col">
                 <mat-form-field class="full-width">
-                  <input matInput placeholder="Previous Experience" formControlName="prevExp">
+
+                  <mat-form-field appearance="fill">
+                    <mat-label>User Role</mat-label>
+                    <mat-select [formControl]="userRole" multiple>
+                      <mat-option *ngFor="let role of userRole" [value]="role">{{role}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+                  <!-- <input matInput placeholder="Previous Experience" formControlName="prevExp">
                   <mat-error *ngIf="userForm.controls['prevExp'].hasError('required')">
                     Previous Experience is <strong>required</strong>
-                  </mat-error>
+                  </mat-error> -->
+
+
                 </mat-form-field>
               </div>
+
             </div>
           
           
@@ -395,8 +410,8 @@
                 <th><span class="viewtableData">{{user.skill}}</span></th>
             </tr>
             <tr>
-                <th>Previous Experience </th>
-                <th><span class="viewtableData">{{user.prevExp}}</span></th>
+                <th>User Role </th> 
+                <th><span class="viewtableData">{{user.role}}</span></th>
             </tr>
             <tr>
                 <th>Total Experience </th>

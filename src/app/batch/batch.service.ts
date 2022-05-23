@@ -14,16 +14,16 @@ export class BatchService {
   constructor(private httpClient: HttpClient) { }
 
   getBatchList(): Observable<Batch[]> {
-    //return this.httpClient.get<Batch[]>('assets/Batch.json');
+   // return this.httpClient.get<Batch[]>('assets/Batch.json');
    return this.httpClient.get<Batch[]>(this.url + "/batches");
   }
 
-  addBatch(bacth: Batch): Observable<Batch> {
-    return this.httpClient.post<Batch>(this.url + "/batches", bacth);
+  addBatch(batch: Batch): Observable<Batch> {
+    return this.httpClient.post<Batch>(this.url + "/batches", batch);
   }
 
-  updateBatch(bacth: Batch) {
-    return this.httpClient.put<Batch>(this.url + "/batches" + bacth.batchId, bacth);
+  updateBatch(batch: Batch) {
+    return this.httpClient.put<Batch>(this.url + "/batches" + batch.batchId, batch);
   }
 
   deleteBatch(batch: Batch) {

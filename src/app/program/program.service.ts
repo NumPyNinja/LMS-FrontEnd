@@ -13,8 +13,8 @@ export class ProgramService {
   constructor(private httpClient: HttpClient) { }
 
   getPrograms(): Observable<Program[]> {
-     // return this.httpClient.get<Program[]>('assets/Programs.json')
-    return this.httpClient.get<Program[]>(this.url + "/allPrograms");
+     return this.httpClient.get<Program[]>('assets/Programs.json')
+   // return this.httpClient.get<Program[]>(this.url + "/allPrograms");
   }
 
   addProgram(program: Program): Observable<Program> {
