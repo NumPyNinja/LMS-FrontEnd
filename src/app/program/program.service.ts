@@ -13,8 +13,8 @@ export class ProgramService {
   constructor(private httpClient: HttpClient) { }
 
   getPrograms(): Observable<Program[]> {
-     return this.httpClient.get<Program[]>('assets/Programs.json')
-   // return this.httpClient.get<Program[]>(this.url + "/allPrograms");
+    // return this.httpClient.get<Program[]>('assets/Programs.json')
+    return this.httpClient.get<Program[]>(this.url + "/allPrograms");
   }
 
   addProgram(program: Program): Observable<Program> {
@@ -22,11 +22,11 @@ export class ProgramService {
   }
 
   editProgram(program: Program) {
-    return this.httpClient.put<Program>(this.url + "/program" + program.programId, program);
+    return this.httpClient.put<Program>(this.url + "/putprogram/" + program.programId, program);
   }
 
   deleteProgram(program: Program) {
-    return this.httpClient.delete<Program>(this.url + "/deletebyprogid" + program.programId);
+    return this.httpClient.delete<Program>(this.url + "/deletebyprogid/" + program.programId);
   }
 
 }
