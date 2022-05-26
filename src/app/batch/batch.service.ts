@@ -23,11 +23,11 @@ export class BatchService {
   }
 
   updateBatch(batch: Batch) {
-    return this.httpClient.put<Batch>(this.url + "/batches" + batch.batchId, batch);
+    return this.httpClient.put<Batch>(this.url + "/batches/" + batch.batchId, batch);
   }
 
   deleteBatch(batch: Batch) {
-    return this.httpClient.delete<Batch>(this.url + "/batches" + batch.batchId);
+    return this.httpClient.delete<Batch>(this.url + "/batches/" + batch.batchId);
   }
 
 }
