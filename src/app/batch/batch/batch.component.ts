@@ -171,7 +171,7 @@ this.programService.getPrograms().subscribe(list=>{
         this.programSize = this.programSize + 1;
         this.batch.batchId = this.programSize.toString();
         this.batchList.push(this.batch);
-        this.batchService.updateBatch(this.batch).subscribe((res) => {
+        this.batchService.addBatch(this.batch).subscribe((res) => {
         });
 
 
