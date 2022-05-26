@@ -149,6 +149,8 @@ this.programService.getPrograms().subscribe(list=>{
   }
 
   saveBatch(): void {
+
+ 
     this.submitted = true;
 
     if (this.batch.batchName.trim()) {
@@ -168,9 +170,15 @@ this.programService.getPrograms().subscribe(list=>{
 
       } else {
 
+      
         this.programSize = this.programSize + 1;
         this.batch.batchId = this.programSize.toString();
         this.batchList.push(this.batch);
+        
+        const pro  = this.batch.programId;
+        this.batch.programId=pro.programId;
+        this.batch.programName = pro.programName;
+
         this.batchService.addBatch(this.batch).subscribe((res) => {
         });
 
