@@ -5,6 +5,6 @@ export interface Batch {
   batchStatus?: boolean;
   batchNoOfClasses?: string;
   programName?: string;
-  programId?: string;
+  programId?: any;
 }
 
