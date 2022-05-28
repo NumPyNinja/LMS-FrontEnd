@@ -82,6 +82,8 @@ this.programService.getPrograms().subscribe(list=>{
 
     this.batchService.getBatchList().subscribe(res => {
       this.batchList = res;
+
+      this.programSize = this.batchList.length;
     })
     //  this.getProgramList();
   }
@@ -155,7 +157,7 @@ this.programService.getPrograms().subscribe(list=>{
 
     if (this.batch.batchName.trim()) {
       if (this.batch.batchId) {
-        this.batchList[this.findIndexById(this.batch.batchId)] = this.batch;
+        this.batchList[this.findIndexById(this.batch.batchId )] = this.batch;
 
         this.messageService.add({
           severity: 'success',
@@ -170,9 +172,10 @@ this.programService.getPrograms().subscribe(list=>{
 
       } else {
 
+    
       
         this.programSize = this.programSize + 1;
-        this.batch.batchId = this.programSize.toString();
+      //  this.batch.batchId = this.programSize.toString();
         this.batchList.push(this.batch);
         
         const pro  = this.batch.programId;
