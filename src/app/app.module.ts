@@ -22,7 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { UserComponent } from './user/user/user.component';
-import { AttendanceComponent } from './attendance/attendance/attendance.component';
+import { AssignmentComponent } from './assignment/assignment/assignment.component';
 
 
 
@@ -35,7 +35,7 @@ import { AttendanceComponent } from './attendance/attendance/attendance.componen
     ProgramComponent,
     BatchComponent,
     UserComponent,
-    AttendanceComponent,
+    AssignmentComponent,
     
   ],
   imports: [
