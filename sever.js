@@ -10,10 +10,10 @@ const express = require('express');
 const app = express();
 
 app.use(requireHTTPS);
-app.use(express.static('./dist/frontend-lms));
+app.use(express.static('./dist/LMS-FrontEnd'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/frontend-lms/'}),
+    res.sendFile('index.html', {root: 'dist/LMS-FrontEnd'}),
 );
 
 app.listen(process.env.PORT || 8080)
