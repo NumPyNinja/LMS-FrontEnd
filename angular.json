@@ -16,6 +16,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "proxyConfig": "proxy.config.json",
           "options": {
             "outputPath": "dist/LMS",
             "index": "src/index.html",
@@ -81,8 +82,10 @@
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
+          "proxyConfig": "proxy.config.json",
           "options": {
-            "browserTarget": "LMS:build"
+            "browserTarget": "LMS:build",
+            
          
           }
         },
@@ -125,12 +128,14 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "LMS:serve:production"
+              "devServerTarget": "LMS:serve:production",
+              
             }
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "proxyConfig": "proxy.config.json"
         }
       }
     }
