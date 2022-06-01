@@ -1,34 +1,20 @@
-{
-	"data": [
-		{
-			"programId": 1,
-			"programName": "SDET",
-			"programDescription": "Testing Class",
-			"programStatus": "New"
-		},
-		{
-			"programId": 1,
-			"programName": "SDET",
-			"programDescription": "Testing Class",
-			"programStatus": "New"
-		},
-		{
-			"programId": 1,
-			"programName": "SDET",
-			"programDescription": "Testing Class",
-			"programStatus": "New"
-		},
-		{
-			"programId": 1,
-			"programName": "SDET",
-			"programDescription": "Testing Class",
-			"programStatus": "New"
-		},
-		{
-			"programId": 1,
-			"programName": "SDET",
-			"programDescription": "Testing Class",
-			"programStatus": "New"
-		}
-	]
-}
+[
+	{
+		"programId": 9,
+		"programName": "dart-n-flutter",
+		"programDescription": "not launched course",
+		"programStatus": "notActive"
+	},
+	{
+		"programId": 12,
+		"programName": "MEAN stack",
+		"programDescription": "not launched course",
+		"programStatus": "notActive"
+	},
+	{
+		"programId": 2,
+		"programName": "restAssured",
+		"programDescription": "string",
+		"programStatus": "active"
+	}
+]
