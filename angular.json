@@ -84,7 +84,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "proxyConfig": "proxy.config.json",
           "options": {
-            "browserTarget": "LMS:build",
+            "browserTarget": "LMS:build"
             
          
           }
@@ -128,7 +128,7 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "LMS:serve:production",
+              "devServerTarget": "LMS:serve:production"
               
             }
           }
